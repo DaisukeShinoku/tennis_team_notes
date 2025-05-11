@@ -11,7 +11,7 @@ export default function Home() {
           className="bg-blue-100 hover:bg-blue-200 p-8 rounded-lg shadow-md transition-colors text-center"
         >
           <h2 className="text-2xl font-semibold mb-4">プレイヤー管理</h2>
-          <p>チームのプレイヤー情報を登録・管理します。スキルレベルや連絡先情報も記録できます。</p>
+          <p>自チームのプレイヤーや外部プレイヤーを登録・管理します。活動状況や所属情報を記録できます。</p>
         </Link>
         
         <Link
@@ -19,7 +19,7 @@ export default function Home() {
           className="bg-green-100 hover:bg-green-200 p-8 rounded-lg shadow-md transition-colors text-center"
         >
           <h2 className="text-2xl font-semibold mb-4">チーム管理</h2>
-          <p>複数のチームを作成・管理できます。プレイヤーをチームに割り当て、キャプテンやコーチを設定できます。</p>
+          <p>管轄内チームや競合チームを管理します。プレイヤーをチームに割り当てることができます。</p>
         </Link>
         
         <Link
@@ -27,7 +27,7 @@ export default function Home() {
           className="bg-orange-100 hover:bg-orange-200 p-8 rounded-lg shadow-md transition-colors text-center"
         >
           <h2 className="text-2xl font-semibold mb-4">試合管理</h2>
-          <p>試合の予定や結果を記録します。対戦相手、スコア、出場プレイヤー、パフォーマンスを管理できます。</p>
+          <p>試合の予定や結果を記録します。場所、ホーム・アウェイのスコア、出場プレイヤーを管理できます。</p>
         </Link>
       </div>
     </div>
