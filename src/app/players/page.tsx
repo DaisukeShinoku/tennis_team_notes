@@ -43,10 +43,8 @@ export default async function PlayersPage() {
             <thead className="bg-gray-50">
               <tr>
                 <th className="py-3 px-4 text-left border-b">名前</th>
-                <th className="py-3 px-4 text-left border-b">メールアドレス</th>
-                <th className="py-3 px-4 text-left border-b">電話番号</th>
-                <th className="py-3 px-4 text-left border-b">スキルレベル</th>
                 <th className="py-3 px-4 text-left border-b">ステータス</th>
+                <th className="py-3 px-4 text-left border-b">メンバー区分</th>
                 <th className="py-3 px-4 text-right border-b">アクション</th>
               </tr>
             </thead>
@@ -54,25 +52,18 @@ export default async function PlayersPage() {
               {players.map((player: any) => (
                 <tr key={player.id} className="hover:bg-gray-50">
                   <td className="py-3 px-4 border-b">{player.name}</td>
-                  <td className="py-3 px-4 border-b">{player.email}</td>
-                  <td className="py-3 px-4 border-b">{player.phone || '-'}</td>
-                  <td className="py-3 px-4 border-b">
-                    <span className={`inline-block px-2 py-1 rounded-full text-xs ${
-                      player.skillLevel === 'BEGINNER' ? 'bg-green-100 text-green-800' :
-                      player.skillLevel === 'INTERMEDIATE' ? 'bg-blue-100 text-blue-800' :
-                      player.skillLevel === 'ADVANCED' ? 'bg-purple-100 text-purple-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
-                      {player.skillLevel === 'BEGINNER' ? '初級' :
-                      player.skillLevel === 'INTERMEDIATE' ? '中級' :
-                      player.skillLevel === 'ADVANCED' ? '上級' : 'エキスパート'}
-                    </span>
-                  </td>
                   <td className="py-3 px-4 border-b">
                     <span className={`inline-block px-2 py-1 rounded-full text-xs ${
                       player.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
                       {player.isActive ? '活動中' : '非活動中'}
+                    </span>
+                  </td>
+                  <td className="py-3 px-4 border-b">
+                    <span className={`inline-block px-2 py-1 rounded-full text-xs ${
+                      player.isMember ? 'bg-blue-100 text-blue-800' : 'bg-orange-100 text-orange-800'
+                    }`}>
+                      {player.isMember ? '自チーム' : '外部'}
                     </span>
                   </td>
                   <td className="py-3 px-4 border-b text-right">

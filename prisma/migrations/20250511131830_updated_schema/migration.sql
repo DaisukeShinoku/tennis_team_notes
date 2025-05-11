@@ -1,18 +1,9 @@
--- CreateEnum
-CREATE TYPE "SkillLevel" AS ENUM ('BEGINNER', 'INTERMEDIATE', 'ADVANCED', 'EXPERT');
-
--- CreateEnum
-CREATE TYPE "TeamRole" AS ENUM ('MEMBER', 'CAPTAIN', 'COACH', 'MANAGER');
-
 -- CreateTable
 CREATE TABLE "Player" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "phone" TEXT,
-    "dateOfBirth" TIMESTAMP(3),
-    "skillLevel" "SkillLevel" NOT NULL DEFAULT 'INTERMEDIATE',
     "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isMember" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -36,7 +27,6 @@ CREATE TABLE "TeamMember" (
     "playerId" TEXT NOT NULL,
     "teamId" TEXT NOT NULL,
     "joinedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "role" "TeamRole" NOT NULL DEFAULT 'MEMBER',
 
     CONSTRAINT "TeamMember_pkey" PRIMARY KEY ("id")
 );
@@ -46,10 +36,8 @@ CREATE TABLE "Match" (
     "id" TEXT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "location" TEXT NOT NULL,
-    "teamId" TEXT NOT NULL,
-    "opponentName" TEXT NOT NULL,
-    "isHome" BOOLEAN NOT NULL,
-    "score" TEXT,
+    "homeScore" INTEGER,
+    "awayScore" INTEGER,
     "notes" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -62,15 +50,11 @@ CREATE TABLE "MatchPlayer" (
     "id" TEXT NOT NULL,
     "matchId" TEXT NOT NULL,
     "playerId" TEXT NOT NULL,
+    "isHome" BOOLEAN NOT NULL,
     "position" TEXT,
-    "performance" INTEGER,
-    "notes" TEXT,
 
     CONSTRAINT "MatchPlayer_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Player_email_key" ON "Player"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "TeamMember_playerId_teamId_key" ON "TeamMember"("playerId", "teamId");
@@ -83,9 +67,6 @@ ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_playerId_fkey" FOREIGN KEY (
 
 -- AddForeignKey
 ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Match" ADD CONSTRAINT "Match_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "MatchPlayer" ADD CONSTRAINT "MatchPlayer_matchId_fkey" FOREIGN KEY ("matchId") REFERENCES "Match"("id") ON DELETE CASCADE ON UPDATE CASCADE;

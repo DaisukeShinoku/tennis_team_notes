@@ -47,9 +47,9 @@ export async function PUT(
     const body = await request.json();
 
     // バリデーション
-    if (!body.name || !body.email) {
+    if (!body.name) {
       return NextResponse.json(
-        { error: '名前とメールアドレスは必須です' },
+        { error: '名前は必須です' },
         { status: 400 }
       );
     }
@@ -66,30 +66,13 @@ export async function PUT(
       );
     }
 
-    // メールアドレスの重複チェック（自分以外）
-    if (body.email !== player.email) {
-      const existingPlayer = await prisma.player.findUnique({
-        where: { email: body.email },
-      });
-
-      if (existingPlayer) {
-        return NextResponse.json(
-          { error: 'このメールアドレスは既に登録されています' },
-          { status: 400 }
-        );
-      }
-    }
-
     // プレイヤー更新
     const updatedPlayer = await prisma.player.update({
       where: { id: params.id },
       data: {
         name: body.name,
-        email: body.email,
-        phone: body.phone,
-        dateOfBirth: body.dateOfBirth ? new Date(body.dateOfBirth) : null,
-        skillLevel: body.skillLevel || player.skillLevel,
         isActive: body.isActive !== undefined ? body.isActive : player.isActive,
+        isMember: body.isMember !== undefined ? body.isMember : player.isMember,
       },
     });
 

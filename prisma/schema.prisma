@@ -17,11 +17,8 @@ datasource db {
 model Player {
   id            String          @id @default(uuid())
   name          String
-  email         String          @unique
-  phone         String?
-  dateOfBirth   DateTime?
-  skillLevel    SkillLevel      @default(INTERMEDIATE)
   isActive      Boolean         @default(true)
+  isMember      Boolean         @default(true)  // true: 自チームの人間, false: 外部の人間
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   teamMemberships TeamMember[]
@@ -32,10 +29,10 @@ model Team {
   id            String          @id @default(uuid())
   name          String
   description   String?
+  isManaged     Boolean         @default(true)  // true: 自分たちの管轄範囲内, false: 競合チーム
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   members       TeamMember[]
-  matches       Match[]
 }
 
 model TeamMember {
@@ -43,7 +40,6 @@ model TeamMember {
   playerId      String
   teamId        String
   joinedAt      DateTime        @default(now())
-  role          TeamRole        @default(MEMBER)
   player        Player          @relation(fields: [playerId], references: [id], onDelete: Cascade)
   team          Team            @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
@@ -54,14 +50,11 @@ model Match {
   id            String          @id @default(uuid())
   date          DateTime
   location      String
-  teamId        String
-  opponentName  String
-  isHome        Boolean
-  score         String?
+  homeScore     Int?            // ホームチームのスコア
+  awayScore     Int?            // アウェイチームのスコア
   notes         String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  team          Team            @relation(fields: [teamId], references: [id], onDelete: Cascade)
   players       MatchPlayer[]
 }
 
@@ -69,25 +62,10 @@ model MatchPlayer {
   id            String          @id @default(uuid())
   matchId       String
   playerId      String
+  isHome        Boolean         // true: ホームチーム, false: アウェイチーム
   position      String?
-  performance   Int?            // Rating from 1-10
-  notes         String?
   match         Match           @relation(fields: [matchId], references: [id], onDelete: Cascade)
   player        Player          @relation(fields: [playerId], references: [id], onDelete: Cascade)
 
   @@unique([matchId, playerId])
-}
-
-enum SkillLevel {
-  BEGINNER
-  INTERMEDIATE
-  ADVANCED
-  EXPERT
-}
-
-enum TeamRole {
-  MEMBER
-  CAPTAIN
-  COACH
-  MANAGER
 }
