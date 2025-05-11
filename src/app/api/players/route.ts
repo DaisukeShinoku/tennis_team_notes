@@ -3,12 +3,14 @@ import { prisma } from '@/lib/db';
 
 export async function GET() {
   try {
+    console.log('プレイヤー一覧を取得しようとしています...');
     const players = await prisma.player.findMany({
       orderBy: { name: 'asc' },
     });
+    console.log('プレイヤー一覧取得成功:', players.length, '件');
     return NextResponse.json(players);
   } catch (error) {
-    console.error('プレイヤー取得エラー:', error);
+    console.error('プレイヤー取得エラー詳細:', error);
     return NextResponse.json(
       { error: 'プレイヤーの取得に失敗しました' },
       { status: 500 }
@@ -21,21 +23,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // バリデーション
-    if (!body.name || !body.email) {
+    if (!body.name) {
       return NextResponse.json(
-        { error: '名前とメールアドレスは必須です' },
-        { status: 400 }
-      );
-    }
-    
-    // メールアドレスの重複チェック
-    const existingPlayer = await prisma.player.findUnique({
-      where: { email: body.email },
-    });
-    
-    if (existingPlayer) {
-      return NextResponse.json(
-        { error: 'このメールアドレスは既に登録されています' },
+        { error: '名前は必須です' },
         { status: 400 }
       );
     }
@@ -44,16 +34,13 @@ export async function POST(request: NextRequest) {
     const newPlayer = await prisma.player.create({
       data: {
         name: body.name,
-        email: body.email,
-        phone: body.phone,
-        dateOfBirth: body.dateOfBirth ? new Date(body.dateOfBirth) : null,
-        skillLevel: body.skillLevel || 'INTERMEDIATE',
+        isActive: body.isActive !== undefined ? body.isActive : true,
       },
     });
     
     return NextResponse.json(newPlayer, { status: 201 });
   } catch (error) {
-    console.error('プレイヤー作成エラー:', error);
+    console.error('プレイヤー作成エラー詳細:', error);
     return NextResponse.json(
       { error: 'プレイヤーの作成に失敗しました' },
       { status: 500 }

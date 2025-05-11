@@ -8,17 +8,17 @@ export default function NewPlayerPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    phone: '',
-    dateOfBirth: '',
-    skillLevel: 'INTERMEDIATE'
+    isActive: true
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target as HTMLInputElement;
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value 
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,7 +69,7 @@ export default function NewPlayerPage() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md shadow-sm border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               名前 <span className="text-red-500">*</span>
@@ -85,65 +85,18 @@ export default function NewPlayerPage() {
             />
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              メールアドレス <span className="text-red-500">*</span>
-            </label>
+          <div className="flex items-center">
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="checkbox"
+              id="isActive"
+              name="isActive"
+              checked={formData.isActive}
               onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
-          </div>
-
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-              電話番号
+            <label htmlFor="isActive" className="ml-2 block text-sm text-gray-700">
+              活動中
             </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-1">
-              生年月日
-            </label>
-            <input
-              type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              value={formData.dateOfBirth}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="skillLevel" className="block text-sm font-medium text-gray-700 mb-1">
-              スキルレベル
-            </label>
-            <select
-              id="skillLevel"
-              name="skillLevel"
-              value={formData.skillLevel}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="BEGINNER">初級</option>
-              <option value="INTERMEDIATE">中級</option>
-              <option value="ADVANCED">上級</option>
-              <option value="EXPERT">エキスパート</option>
-            </select>
           </div>
         </div>
 

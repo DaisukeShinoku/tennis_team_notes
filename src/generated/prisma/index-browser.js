@@ -123,10 +123,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.PlayerScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
-  phone: 'phone',
-  dateOfBirth: 'dateOfBirth',
-  skillLevel: 'skillLevel',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -136,6 +132,7 @@ exports.Prisma.TeamScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  isManaged: 'isManaged',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -144,18 +141,15 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   id: 'id',
   playerId: 'playerId',
   teamId: 'teamId',
-  joinedAt: 'joinedAt',
-  role: 'role'
+  joinedAt: 'joinedAt'
 };
 
 exports.Prisma.MatchScalarFieldEnum = {
   id: 'id',
   date: 'date',
   location: 'location',
-  teamId: 'teamId',
-  opponentName: 'opponentName',
-  isHome: 'isHome',
-  score: 'score',
+  homeScore: 'homeScore',
+  awayScore: 'awayScore',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -165,9 +159,8 @@ exports.Prisma.MatchPlayerScalarFieldEnum = {
   id: 'id',
   matchId: 'matchId',
   playerId: 'playerId',
-  position: 'position',
-  performance: 'performance',
-  notes: 'notes'
+  isHome: 'isHome',
+  position: 'position'
 };
 
 exports.Prisma.SortOrder = {
@@ -184,19 +177,7 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.SkillLevel = exports.$Enums.SkillLevel = {
-  BEGINNER: 'BEGINNER',
-  INTERMEDIATE: 'INTERMEDIATE',
-  ADVANCED: 'ADVANCED',
-  EXPERT: 'EXPERT'
-};
 
-exports.TeamRole = exports.$Enums.TeamRole = {
-  MEMBER: 'MEMBER',
-  CAPTAIN: 'CAPTAIN',
-  COACH: 'COACH',
-  MANAGER: 'MANAGER'
-};
 
 exports.Prisma.ModelName = {
   Player: 'Player',

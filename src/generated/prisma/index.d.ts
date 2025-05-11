@@ -40,39 +40,6 @@ export type Match = $Result.DefaultSelection<Prisma.$MatchPayload>
 export type MatchPlayer = $Result.DefaultSelection<Prisma.$MatchPlayerPayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const SkillLevel: {
-  BEGINNER: 'BEGINNER',
-  INTERMEDIATE: 'INTERMEDIATE',
-  ADVANCED: 'ADVANCED',
-  EXPERT: 'EXPERT'
-};
-
-export type SkillLevel = (typeof SkillLevel)[keyof typeof SkillLevel]
-
-
-export const TeamRole: {
-  MEMBER: 'MEMBER',
-  CAPTAIN: 'CAPTAIN',
-  COACH: 'COACH',
-  MANAGER: 'MANAGER'
-};
-
-export type TeamRole = (typeof TeamRole)[keyof typeof TeamRole]
-
-}
-
-export type SkillLevel = $Enums.SkillLevel
-
-export const SkillLevel: typeof $Enums.SkillLevel
-
-export type TeamRole = $Enums.TeamRole
-
-export const TeamRole: typeof $Enums.TeamRole
-
-/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1307,12 +1274,10 @@ export namespace Prisma {
 
   export type TeamCountOutputType = {
     members: number
-    matches: number
   }
 
   export type TeamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | TeamCountOutputTypeCountMembersArgs
-    matches?: boolean | TeamCountOutputTypeCountMatchesArgs
   }
 
   // Custom InputTypes
@@ -1331,13 +1296,6 @@ export namespace Prisma {
    */
   export type TeamCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TeamMemberWhereInput
-  }
-
-  /**
-   * TeamCountOutputType without action
-   */
-  export type TeamCountOutputTypeCountMatchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MatchWhereInput
   }
 
 
@@ -1389,10 +1347,6 @@ export namespace Prisma {
   export type PlayerMinAggregateOutputType = {
     id: string | null
     name: string | null
-    email: string | null
-    phone: string | null
-    dateOfBirth: Date | null
-    skillLevel: $Enums.SkillLevel | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1401,10 +1355,6 @@ export namespace Prisma {
   export type PlayerMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    email: string | null
-    phone: string | null
-    dateOfBirth: Date | null
-    skillLevel: $Enums.SkillLevel | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1413,10 +1363,6 @@ export namespace Prisma {
   export type PlayerCountAggregateOutputType = {
     id: number
     name: number
-    email: number
-    phone: number
-    dateOfBirth: number
-    skillLevel: number
     isActive: number
     createdAt: number
     updatedAt: number
@@ -1427,10 +1373,6 @@ export namespace Prisma {
   export type PlayerMinAggregateInputType = {
     id?: true
     name?: true
-    email?: true
-    phone?: true
-    dateOfBirth?: true
-    skillLevel?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -1439,10 +1381,6 @@ export namespace Prisma {
   export type PlayerMaxAggregateInputType = {
     id?: true
     name?: true
-    email?: true
-    phone?: true
-    dateOfBirth?: true
-    skillLevel?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -1451,10 +1389,6 @@ export namespace Prisma {
   export type PlayerCountAggregateInputType = {
     id?: true
     name?: true
-    email?: true
-    phone?: true
-    dateOfBirth?: true
-    skillLevel?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -1536,10 +1470,6 @@ export namespace Prisma {
   export type PlayerGroupByOutputType = {
     id: string
     name: string
-    email: string
-    phone: string | null
-    dateOfBirth: Date | null
-    skillLevel: $Enums.SkillLevel
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -1565,10 +1495,6 @@ export namespace Prisma {
   export type PlayerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    email?: boolean
-    phone?: boolean
-    dateOfBirth?: boolean
-    skillLevel?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1580,10 +1506,6 @@ export namespace Prisma {
   export type PlayerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    email?: boolean
-    phone?: boolean
-    dateOfBirth?: boolean
-    skillLevel?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1592,10 +1514,6 @@ export namespace Prisma {
   export type PlayerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    email?: boolean
-    phone?: boolean
-    dateOfBirth?: boolean
-    skillLevel?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1604,16 +1522,12 @@ export namespace Prisma {
   export type PlayerSelectScalar = {
     id?: boolean
     name?: boolean
-    email?: boolean
-    phone?: boolean
-    dateOfBirth?: boolean
-    skillLevel?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "dateOfBirth" | "skillLevel" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["player"]>
+  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["player"]>
   export type PlayerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teamMemberships?: boolean | Player$teamMembershipsArgs<ExtArgs>
     matchParticipations?: boolean | Player$matchParticipationsArgs<ExtArgs>
@@ -1631,10 +1545,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      email: string
-      phone: string | null
-      dateOfBirth: Date | null
-      skillLevel: $Enums.SkillLevel
       isActive: boolean
       createdAt: Date
       updatedAt: Date
@@ -2065,10 +1975,6 @@ export namespace Prisma {
   interface PlayerFieldRefs {
     readonly id: FieldRef<"Player", 'String'>
     readonly name: FieldRef<"Player", 'String'>
-    readonly email: FieldRef<"Player", 'String'>
-    readonly phone: FieldRef<"Player", 'String'>
-    readonly dateOfBirth: FieldRef<"Player", 'DateTime'>
-    readonly skillLevel: FieldRef<"Player", 'SkillLevel'>
     readonly isActive: FieldRef<"Player", 'Boolean'>
     readonly createdAt: FieldRef<"Player", 'DateTime'>
     readonly updatedAt: FieldRef<"Player", 'DateTime'>
@@ -2540,6 +2446,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    isManaged: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2548,6 +2455,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    isManaged: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2556,6 +2464,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
+    isManaged: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2566,6 +2475,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    isManaged?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2574,6 +2484,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    isManaged?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2582,6 +2493,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    isManaged?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2663,6 +2575,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
+    isManaged: boolean
     createdAt: Date
     updatedAt: Date
     _count: TeamCountAggregateOutputType | null
@@ -2688,10 +2601,10 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    isManaged?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     members?: boolean | Team$membersArgs<ExtArgs>
-    matches?: boolean | Team$matchesArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["team"]>
 
@@ -2699,6 +2612,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    isManaged?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["team"]>
@@ -2707,6 +2621,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    isManaged?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["team"]>
@@ -2715,14 +2630,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    isManaged?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TeamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["team"]>
+  export type TeamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "isManaged" | "createdAt" | "updatedAt", ExtArgs["result"]["team"]>
   export type TeamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | Team$membersArgs<ExtArgs>
-    matches?: boolean | Team$matchesArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TeamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2732,12 +2647,12 @@ export namespace Prisma {
     name: "Team"
     objects: {
       members: Prisma.$TeamMemberPayload<ExtArgs>[]
-      matches: Prisma.$MatchPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       description: string | null
+      isManaged: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["team"]>
@@ -3135,7 +3050,6 @@ export namespace Prisma {
   export interface Prisma__TeamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     members<T extends Team$membersArgs<ExtArgs> = {}>(args?: Subset<T, Team$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    matches<T extends Team$matchesArgs<ExtArgs> = {}>(args?: Subset<T, Team$matchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3168,6 +3082,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Team", 'String'>
     readonly name: FieldRef<"Team", 'String'>
     readonly description: FieldRef<"Team", 'String'>
+    readonly isManaged: FieldRef<"Team", 'Boolean'>
     readonly createdAt: FieldRef<"Team", 'DateTime'>
     readonly updatedAt: FieldRef<"Team", 'DateTime'>
   }
@@ -3582,30 +3497,6 @@ export namespace Prisma {
   }
 
   /**
-   * Team.matches
-   */
-  export type Team$matchesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Match
-     */
-    select?: MatchSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Match
-     */
-    omit?: MatchOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MatchInclude<ExtArgs> | null
-    where?: MatchWhereInput
-    orderBy?: MatchOrderByWithRelationInput | MatchOrderByWithRelationInput[]
-    cursor?: MatchWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MatchScalarFieldEnum | MatchScalarFieldEnum[]
-  }
-
-  /**
    * Team without action
    */
   export type TeamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3639,7 +3530,6 @@ export namespace Prisma {
     playerId: string | null
     teamId: string | null
     joinedAt: Date | null
-    role: $Enums.TeamRole | null
   }
 
   export type TeamMemberMaxAggregateOutputType = {
@@ -3647,7 +3537,6 @@ export namespace Prisma {
     playerId: string | null
     teamId: string | null
     joinedAt: Date | null
-    role: $Enums.TeamRole | null
   }
 
   export type TeamMemberCountAggregateOutputType = {
@@ -3655,7 +3544,6 @@ export namespace Prisma {
     playerId: number
     teamId: number
     joinedAt: number
-    role: number
     _all: number
   }
 
@@ -3665,7 +3553,6 @@ export namespace Prisma {
     playerId?: true
     teamId?: true
     joinedAt?: true
-    role?: true
   }
 
   export type TeamMemberMaxAggregateInputType = {
@@ -3673,7 +3560,6 @@ export namespace Prisma {
     playerId?: true
     teamId?: true
     joinedAt?: true
-    role?: true
   }
 
   export type TeamMemberCountAggregateInputType = {
@@ -3681,7 +3567,6 @@ export namespace Prisma {
     playerId?: true
     teamId?: true
     joinedAt?: true
-    role?: true
     _all?: true
   }
 
@@ -3762,7 +3647,6 @@ export namespace Prisma {
     playerId: string
     teamId: string
     joinedAt: Date
-    role: $Enums.TeamRole
     _count: TeamMemberCountAggregateOutputType | null
     _min: TeamMemberMinAggregateOutputType | null
     _max: TeamMemberMaxAggregateOutputType | null
@@ -3787,7 +3671,6 @@ export namespace Prisma {
     playerId?: boolean
     teamId?: boolean
     joinedAt?: boolean
-    role?: boolean
     player?: boolean | PlayerDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -3797,7 +3680,6 @@ export namespace Prisma {
     playerId?: boolean
     teamId?: boolean
     joinedAt?: boolean
-    role?: boolean
     player?: boolean | PlayerDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -3807,7 +3689,6 @@ export namespace Prisma {
     playerId?: boolean
     teamId?: boolean
     joinedAt?: boolean
-    role?: boolean
     player?: boolean | PlayerDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -3817,10 +3698,9 @@ export namespace Prisma {
     playerId?: boolean
     teamId?: boolean
     joinedAt?: boolean
-    role?: boolean
   }
 
-  export type TeamMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "playerId" | "teamId" | "joinedAt" | "role", ExtArgs["result"]["teamMember"]>
+  export type TeamMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "playerId" | "teamId" | "joinedAt", ExtArgs["result"]["teamMember"]>
   export type TeamMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     player?: boolean | PlayerDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
@@ -3845,7 +3725,6 @@ export namespace Prisma {
       playerId: string
       teamId: string
       joinedAt: Date
-      role: $Enums.TeamRole
     }, ExtArgs["result"]["teamMember"]>
     composites: {}
   }
@@ -4275,7 +4154,6 @@ export namespace Prisma {
     readonly playerId: FieldRef<"TeamMember", 'String'>
     readonly teamId: FieldRef<"TeamMember", 'String'>
     readonly joinedAt: FieldRef<"TeamMember", 'DateTime'>
-    readonly role: FieldRef<"TeamMember", 'TeamRole'>
   }
     
 
@@ -4696,18 +4574,28 @@ export namespace Prisma {
 
   export type AggregateMatch = {
     _count: MatchCountAggregateOutputType | null
+    _avg: MatchAvgAggregateOutputType | null
+    _sum: MatchSumAggregateOutputType | null
     _min: MatchMinAggregateOutputType | null
     _max: MatchMaxAggregateOutputType | null
+  }
+
+  export type MatchAvgAggregateOutputType = {
+    homeScore: number | null
+    awayScore: number | null
+  }
+
+  export type MatchSumAggregateOutputType = {
+    homeScore: number | null
+    awayScore: number | null
   }
 
   export type MatchMinAggregateOutputType = {
     id: string | null
     date: Date | null
     location: string | null
-    teamId: string | null
-    opponentName: string | null
-    isHome: boolean | null
-    score: string | null
+    homeScore: number | null
+    awayScore: number | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4717,10 +4605,8 @@ export namespace Prisma {
     id: string | null
     date: Date | null
     location: string | null
-    teamId: string | null
-    opponentName: string | null
-    isHome: boolean | null
-    score: string | null
+    homeScore: number | null
+    awayScore: number | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4730,10 +4616,8 @@ export namespace Prisma {
     id: number
     date: number
     location: number
-    teamId: number
-    opponentName: number
-    isHome: number
-    score: number
+    homeScore: number
+    awayScore: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -4741,14 +4625,22 @@ export namespace Prisma {
   }
 
 
+  export type MatchAvgAggregateInputType = {
+    homeScore?: true
+    awayScore?: true
+  }
+
+  export type MatchSumAggregateInputType = {
+    homeScore?: true
+    awayScore?: true
+  }
+
   export type MatchMinAggregateInputType = {
     id?: true
     date?: true
     location?: true
-    teamId?: true
-    opponentName?: true
-    isHome?: true
-    score?: true
+    homeScore?: true
+    awayScore?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -4758,10 +4650,8 @@ export namespace Prisma {
     id?: true
     date?: true
     location?: true
-    teamId?: true
-    opponentName?: true
-    isHome?: true
-    score?: true
+    homeScore?: true
+    awayScore?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -4771,10 +4661,8 @@ export namespace Prisma {
     id?: true
     date?: true
     location?: true
-    teamId?: true
-    opponentName?: true
-    isHome?: true
-    score?: true
+    homeScore?: true
+    awayScore?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -4819,6 +4707,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: MatchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MatchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: MatchMinAggregateInputType
@@ -4849,6 +4749,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: MatchCountAggregateInputType | true
+    _avg?: MatchAvgAggregateInputType
+    _sum?: MatchSumAggregateInputType
     _min?: MatchMinAggregateInputType
     _max?: MatchMaxAggregateInputType
   }
@@ -4857,14 +4759,14 @@ export namespace Prisma {
     id: string
     date: Date
     location: string
-    teamId: string
-    opponentName: string
-    isHome: boolean
-    score: string | null
+    homeScore: number | null
+    awayScore: number | null
     notes: string | null
     createdAt: Date
     updatedAt: Date
     _count: MatchCountAggregateOutputType | null
+    _avg: MatchAvgAggregateOutputType | null
+    _sum: MatchSumAggregateOutputType | null
     _min: MatchMinAggregateOutputType | null
     _max: MatchMaxAggregateOutputType | null
   }
@@ -4887,14 +4789,11 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     location?: boolean
-    teamId?: boolean
-    opponentName?: boolean
-    isHome?: boolean
-    score?: boolean
+    homeScore?: boolean
+    awayScore?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
     players?: boolean | Match$playersArgs<ExtArgs>
     _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["match"]>
@@ -4903,70 +4802,54 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     location?: boolean
-    teamId?: boolean
-    opponentName?: boolean
-    isHome?: boolean
-    score?: boolean
+    homeScore?: boolean
+    awayScore?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["match"]>
 
   export type MatchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
     location?: boolean
-    teamId?: boolean
-    opponentName?: boolean
-    isHome?: boolean
-    score?: boolean
+    homeScore?: boolean
+    awayScore?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["match"]>
 
   export type MatchSelectScalar = {
     id?: boolean
     date?: boolean
     location?: boolean
-    teamId?: boolean
-    opponentName?: boolean
-    isHome?: boolean
-    score?: boolean
+    homeScore?: boolean
+    awayScore?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "location" | "teamId" | "opponentName" | "isHome" | "score" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
+  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "location" | "homeScore" | "awayScore" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
   export type MatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
     players?: boolean | Match$playersArgs<ExtArgs>
     _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type MatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-  export type MatchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
+  export type MatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MatchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $MatchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Match"
     objects: {
-      team: Prisma.$TeamPayload<ExtArgs>
       players: Prisma.$MatchPlayerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       date: Date
       location: string
-      teamId: string
-      opponentName: string
-      isHome: boolean
-      score: string | null
+      homeScore: number | null
+      awayScore: number | null
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -5364,7 +5247,6 @@ export namespace Prisma {
    */
   export interface Prisma__MatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     players<T extends Match$playersArgs<ExtArgs> = {}>(args?: Subset<T, Match$playersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPlayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5398,10 +5280,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Match", 'String'>
     readonly date: FieldRef<"Match", 'DateTime'>
     readonly location: FieldRef<"Match", 'String'>
-    readonly teamId: FieldRef<"Match", 'String'>
-    readonly opponentName: FieldRef<"Match", 'String'>
-    readonly isHome: FieldRef<"Match", 'Boolean'>
-    readonly score: FieldRef<"Match", 'String'>
+    readonly homeScore: FieldRef<"Match", 'Int'>
+    readonly awayScore: FieldRef<"Match", 'Int'>
     readonly notes: FieldRef<"Match", 'String'>
     readonly createdAt: FieldRef<"Match", 'DateTime'>
     readonly updatedAt: FieldRef<"Match", 'DateTime'>
@@ -5654,10 +5534,6 @@ export namespace Prisma {
      */
     data: MatchCreateManyInput | MatchCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MatchIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5728,10 +5604,6 @@ export namespace Prisma {
      * Limit how many Matches to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MatchIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5849,82 +5721,58 @@ export namespace Prisma {
 
   export type AggregateMatchPlayer = {
     _count: MatchPlayerCountAggregateOutputType | null
-    _avg: MatchPlayerAvgAggregateOutputType | null
-    _sum: MatchPlayerSumAggregateOutputType | null
     _min: MatchPlayerMinAggregateOutputType | null
     _max: MatchPlayerMaxAggregateOutputType | null
-  }
-
-  export type MatchPlayerAvgAggregateOutputType = {
-    performance: number | null
-  }
-
-  export type MatchPlayerSumAggregateOutputType = {
-    performance: number | null
   }
 
   export type MatchPlayerMinAggregateOutputType = {
     id: string | null
     matchId: string | null
     playerId: string | null
+    isHome: boolean | null
     position: string | null
-    performance: number | null
-    notes: string | null
   }
 
   export type MatchPlayerMaxAggregateOutputType = {
     id: string | null
     matchId: string | null
     playerId: string | null
+    isHome: boolean | null
     position: string | null
-    performance: number | null
-    notes: string | null
   }
 
   export type MatchPlayerCountAggregateOutputType = {
     id: number
     matchId: number
     playerId: number
+    isHome: number
     position: number
-    performance: number
-    notes: number
     _all: number
   }
 
-
-  export type MatchPlayerAvgAggregateInputType = {
-    performance?: true
-  }
-
-  export type MatchPlayerSumAggregateInputType = {
-    performance?: true
-  }
 
   export type MatchPlayerMinAggregateInputType = {
     id?: true
     matchId?: true
     playerId?: true
+    isHome?: true
     position?: true
-    performance?: true
-    notes?: true
   }
 
   export type MatchPlayerMaxAggregateInputType = {
     id?: true
     matchId?: true
     playerId?: true
+    isHome?: true
     position?: true
-    performance?: true
-    notes?: true
   }
 
   export type MatchPlayerCountAggregateInputType = {
     id?: true
     matchId?: true
     playerId?: true
+    isHome?: true
     position?: true
-    performance?: true
-    notes?: true
     _all?: true
   }
 
@@ -5966,18 +5814,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: MatchPlayerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: MatchPlayerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: MatchPlayerMinAggregateInputType
@@ -6008,8 +5844,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: MatchPlayerCountAggregateInputType | true
-    _avg?: MatchPlayerAvgAggregateInputType
-    _sum?: MatchPlayerSumAggregateInputType
     _min?: MatchPlayerMinAggregateInputType
     _max?: MatchPlayerMaxAggregateInputType
   }
@@ -6018,12 +5852,9 @@ export namespace Prisma {
     id: string
     matchId: string
     playerId: string
+    isHome: boolean
     position: string | null
-    performance: number | null
-    notes: string | null
     _count: MatchPlayerCountAggregateOutputType | null
-    _avg: MatchPlayerAvgAggregateOutputType | null
-    _sum: MatchPlayerSumAggregateOutputType | null
     _min: MatchPlayerMinAggregateOutputType | null
     _max: MatchPlayerMaxAggregateOutputType | null
   }
@@ -6046,9 +5877,8 @@ export namespace Prisma {
     id?: boolean
     matchId?: boolean
     playerId?: boolean
+    isHome?: boolean
     position?: boolean
-    performance?: boolean
-    notes?: boolean
     match?: boolean | MatchDefaultArgs<ExtArgs>
     player?: boolean | PlayerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["matchPlayer"]>
@@ -6057,9 +5887,8 @@ export namespace Prisma {
     id?: boolean
     matchId?: boolean
     playerId?: boolean
+    isHome?: boolean
     position?: boolean
-    performance?: boolean
-    notes?: boolean
     match?: boolean | MatchDefaultArgs<ExtArgs>
     player?: boolean | PlayerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["matchPlayer"]>
@@ -6068,9 +5897,8 @@ export namespace Prisma {
     id?: boolean
     matchId?: boolean
     playerId?: boolean
+    isHome?: boolean
     position?: boolean
-    performance?: boolean
-    notes?: boolean
     match?: boolean | MatchDefaultArgs<ExtArgs>
     player?: boolean | PlayerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["matchPlayer"]>
@@ -6079,12 +5907,11 @@ export namespace Prisma {
     id?: boolean
     matchId?: boolean
     playerId?: boolean
+    isHome?: boolean
     position?: boolean
-    performance?: boolean
-    notes?: boolean
   }
 
-  export type MatchPlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "matchId" | "playerId" | "position" | "performance" | "notes", ExtArgs["result"]["matchPlayer"]>
+  export type MatchPlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "matchId" | "playerId" | "isHome" | "position", ExtArgs["result"]["matchPlayer"]>
   export type MatchPlayerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     match?: boolean | MatchDefaultArgs<ExtArgs>
     player?: boolean | PlayerDefaultArgs<ExtArgs>
@@ -6108,9 +5935,8 @@ export namespace Prisma {
       id: string
       matchId: string
       playerId: string
+      isHome: boolean
       position: string | null
-      performance: number | null
-      notes: string | null
     }, ExtArgs["result"]["matchPlayer"]>
     composites: {}
   }
@@ -6539,9 +6365,8 @@ export namespace Prisma {
     readonly id: FieldRef<"MatchPlayer", 'String'>
     readonly matchId: FieldRef<"MatchPlayer", 'String'>
     readonly playerId: FieldRef<"MatchPlayer", 'String'>
+    readonly isHome: FieldRef<"MatchPlayer", 'Boolean'>
     readonly position: FieldRef<"MatchPlayer", 'String'>
-    readonly performance: FieldRef<"MatchPlayer", 'Int'>
-    readonly notes: FieldRef<"MatchPlayer", 'String'>
   }
     
 
@@ -6973,10 +6798,6 @@ export namespace Prisma {
   export const PlayerScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    email: 'email',
-    phone: 'phone',
-    dateOfBirth: 'dateOfBirth',
-    skillLevel: 'skillLevel',
     isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -6989,6 +6810,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
+    isManaged: 'isManaged',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7000,8 +6822,7 @@ export namespace Prisma {
     id: 'id',
     playerId: 'playerId',
     teamId: 'teamId',
-    joinedAt: 'joinedAt',
-    role: 'role'
+    joinedAt: 'joinedAt'
   };
 
   export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
@@ -7011,10 +6832,8 @@ export namespace Prisma {
     id: 'id',
     date: 'date',
     location: 'location',
-    teamId: 'teamId',
-    opponentName: 'opponentName',
-    isHome: 'isHome',
-    score: 'score',
+    homeScore: 'homeScore',
+    awayScore: 'awayScore',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -7027,9 +6846,8 @@ export namespace Prisma {
     id: 'id',
     matchId: 'matchId',
     playerId: 'playerId',
-    position: 'position',
-    performance: 'performance',
-    notes: 'notes'
+    isHome: 'isHome',
+    position: 'position'
   };
 
   export type MatchPlayerScalarFieldEnum = (typeof MatchPlayerScalarFieldEnum)[keyof typeof MatchPlayerScalarFieldEnum]
@@ -7079,6 +6897,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -7089,41 +6914,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'SkillLevel'
-   */
-  export type EnumSkillLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillLevel'>
-    
-
-
-  /**
-   * Reference to a field of type 'SkillLevel[]'
-   */
-  export type ListEnumSkillLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillLevel[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'TeamRole'
-   */
-  export type EnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeamRole'>
-    
-
-
-  /**
-   * Reference to a field of type 'TeamRole[]'
-   */
-  export type ListEnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeamRole[]'>
     
 
 
@@ -7164,10 +6954,6 @@ export namespace Prisma {
     NOT?: PlayerWhereInput | PlayerWhereInput[]
     id?: StringFilter<"Player"> | string
     name?: StringFilter<"Player"> | string
-    email?: StringFilter<"Player"> | string
-    phone?: StringNullableFilter<"Player"> | string | null
-    dateOfBirth?: DateTimeNullableFilter<"Player"> | Date | string | null
-    skillLevel?: EnumSkillLevelFilter<"Player"> | $Enums.SkillLevel
     isActive?: BoolFilter<"Player"> | boolean
     createdAt?: DateTimeFilter<"Player"> | Date | string
     updatedAt?: DateTimeFilter<"Player"> | Date | string
@@ -7178,10 +6964,6 @@ export namespace Prisma {
   export type PlayerOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    dateOfBirth?: SortOrderInput | SortOrder
-    skillLevel?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7191,28 +6973,20 @@ export namespace Prisma {
 
   export type PlayerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
     AND?: PlayerWhereInput | PlayerWhereInput[]
     OR?: PlayerWhereInput[]
     NOT?: PlayerWhereInput | PlayerWhereInput[]
     name?: StringFilter<"Player"> | string
-    phone?: StringNullableFilter<"Player"> | string | null
-    dateOfBirth?: DateTimeNullableFilter<"Player"> | Date | string | null
-    skillLevel?: EnumSkillLevelFilter<"Player"> | $Enums.SkillLevel
     isActive?: BoolFilter<"Player"> | boolean
     createdAt?: DateTimeFilter<"Player"> | Date | string
     updatedAt?: DateTimeFilter<"Player"> | Date | string
     teamMemberships?: TeamMemberListRelationFilter
     matchParticipations?: MatchPlayerListRelationFilter
-  }, "id" | "email">
+  }, "id">
 
   export type PlayerOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    dateOfBirth?: SortOrderInput | SortOrder
-    skillLevel?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7227,10 +7001,6 @@ export namespace Prisma {
     NOT?: PlayerScalarWhereWithAggregatesInput | PlayerScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Player"> | string
     name?: StringWithAggregatesFilter<"Player"> | string
-    email?: StringWithAggregatesFilter<"Player"> | string
-    phone?: StringNullableWithAggregatesFilter<"Player"> | string | null
-    dateOfBirth?: DateTimeNullableWithAggregatesFilter<"Player"> | Date | string | null
-    skillLevel?: EnumSkillLevelWithAggregatesFilter<"Player"> | $Enums.SkillLevel
     isActive?: BoolWithAggregatesFilter<"Player"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Player"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Player"> | Date | string
@@ -7243,20 +7013,20 @@ export namespace Prisma {
     id?: StringFilter<"Team"> | string
     name?: StringFilter<"Team"> | string
     description?: StringNullableFilter<"Team"> | string | null
+    isManaged?: BoolFilter<"Team"> | boolean
     createdAt?: DateTimeFilter<"Team"> | Date | string
     updatedAt?: DateTimeFilter<"Team"> | Date | string
     members?: TeamMemberListRelationFilter
-    matches?: MatchListRelationFilter
   }
 
   export type TeamOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
+    isManaged?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     members?: TeamMemberOrderByRelationAggregateInput
-    matches?: MatchOrderByRelationAggregateInput
   }
 
   export type TeamWhereUniqueInput = Prisma.AtLeast<{
@@ -7266,16 +7036,17 @@ export namespace Prisma {
     NOT?: TeamWhereInput | TeamWhereInput[]
     name?: StringFilter<"Team"> | string
     description?: StringNullableFilter<"Team"> | string | null
+    isManaged?: BoolFilter<"Team"> | boolean
     createdAt?: DateTimeFilter<"Team"> | Date | string
     updatedAt?: DateTimeFilter<"Team"> | Date | string
     members?: TeamMemberListRelationFilter
-    matches?: MatchListRelationFilter
   }, "id">
 
   export type TeamOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
+    isManaged?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TeamCountOrderByAggregateInput
@@ -7290,6 +7061,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Team"> | string
     name?: StringWithAggregatesFilter<"Team"> | string
     description?: StringNullableWithAggregatesFilter<"Team"> | string | null
+    isManaged?: BoolWithAggregatesFilter<"Team"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Team"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Team"> | Date | string
   }
@@ -7302,7 +7074,6 @@ export namespace Prisma {
     playerId?: StringFilter<"TeamMember"> | string
     teamId?: StringFilter<"TeamMember"> | string
     joinedAt?: DateTimeFilter<"TeamMember"> | Date | string
-    role?: EnumTeamRoleFilter<"TeamMember"> | $Enums.TeamRole
     player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
   }
@@ -7312,7 +7083,6 @@ export namespace Prisma {
     playerId?: SortOrder
     teamId?: SortOrder
     joinedAt?: SortOrder
-    role?: SortOrder
     player?: PlayerOrderByWithRelationInput
     team?: TeamOrderByWithRelationInput
   }
@@ -7326,7 +7096,6 @@ export namespace Prisma {
     playerId?: StringFilter<"TeamMember"> | string
     teamId?: StringFilter<"TeamMember"> | string
     joinedAt?: DateTimeFilter<"TeamMember"> | Date | string
-    role?: EnumTeamRoleFilter<"TeamMember"> | $Enums.TeamRole
     player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
   }, "id" | "playerId_teamId">
@@ -7336,7 +7105,6 @@ export namespace Prisma {
     playerId?: SortOrder
     teamId?: SortOrder
     joinedAt?: SortOrder
-    role?: SortOrder
     _count?: TeamMemberCountOrderByAggregateInput
     _max?: TeamMemberMaxOrderByAggregateInput
     _min?: TeamMemberMinOrderByAggregateInput
@@ -7350,7 +7118,6 @@ export namespace Prisma {
     playerId?: StringWithAggregatesFilter<"TeamMember"> | string
     teamId?: StringWithAggregatesFilter<"TeamMember"> | string
     joinedAt?: DateTimeWithAggregatesFilter<"TeamMember"> | Date | string
-    role?: EnumTeamRoleWithAggregatesFilter<"TeamMember"> | $Enums.TeamRole
   }
 
   export type MatchWhereInput = {
@@ -7360,14 +7127,11 @@ export namespace Prisma {
     id?: StringFilter<"Match"> | string
     date?: DateTimeFilter<"Match"> | Date | string
     location?: StringFilter<"Match"> | string
-    teamId?: StringFilter<"Match"> | string
-    opponentName?: StringFilter<"Match"> | string
-    isHome?: BoolFilter<"Match"> | boolean
-    score?: StringNullableFilter<"Match"> | string | null
+    homeScore?: IntNullableFilter<"Match"> | number | null
+    awayScore?: IntNullableFilter<"Match"> | number | null
     notes?: StringNullableFilter<"Match"> | string | null
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     players?: MatchPlayerListRelationFilter
   }
 
@@ -7375,14 +7139,11 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     location?: SortOrder
-    teamId?: SortOrder
-    opponentName?: SortOrder
-    isHome?: SortOrder
-    score?: SortOrderInput | SortOrder
+    homeScore?: SortOrderInput | SortOrder
+    awayScore?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    team?: TeamOrderByWithRelationInput
     players?: MatchPlayerOrderByRelationAggregateInput
   }
 
@@ -7393,14 +7154,11 @@ export namespace Prisma {
     NOT?: MatchWhereInput | MatchWhereInput[]
     date?: DateTimeFilter<"Match"> | Date | string
     location?: StringFilter<"Match"> | string
-    teamId?: StringFilter<"Match"> | string
-    opponentName?: StringFilter<"Match"> | string
-    isHome?: BoolFilter<"Match"> | boolean
-    score?: StringNullableFilter<"Match"> | string | null
+    homeScore?: IntNullableFilter<"Match"> | number | null
+    awayScore?: IntNullableFilter<"Match"> | number | null
     notes?: StringNullableFilter<"Match"> | string | null
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     players?: MatchPlayerListRelationFilter
   }, "id">
 
@@ -7408,16 +7166,16 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     location?: SortOrder
-    teamId?: SortOrder
-    opponentName?: SortOrder
-    isHome?: SortOrder
-    score?: SortOrderInput | SortOrder
+    homeScore?: SortOrderInput | SortOrder
+    awayScore?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MatchCountOrderByAggregateInput
+    _avg?: MatchAvgOrderByAggregateInput
     _max?: MatchMaxOrderByAggregateInput
     _min?: MatchMinOrderByAggregateInput
+    _sum?: MatchSumOrderByAggregateInput
   }
 
   export type MatchScalarWhereWithAggregatesInput = {
@@ -7427,10 +7185,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Match"> | string
     date?: DateTimeWithAggregatesFilter<"Match"> | Date | string
     location?: StringWithAggregatesFilter<"Match"> | string
-    teamId?: StringWithAggregatesFilter<"Match"> | string
-    opponentName?: StringWithAggregatesFilter<"Match"> | string
-    isHome?: BoolWithAggregatesFilter<"Match"> | boolean
-    score?: StringNullableWithAggregatesFilter<"Match"> | string | null
+    homeScore?: IntNullableWithAggregatesFilter<"Match"> | number | null
+    awayScore?: IntNullableWithAggregatesFilter<"Match"> | number | null
     notes?: StringNullableWithAggregatesFilter<"Match"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Match"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Match"> | Date | string
@@ -7443,9 +7199,8 @@ export namespace Prisma {
     id?: StringFilter<"MatchPlayer"> | string
     matchId?: StringFilter<"MatchPlayer"> | string
     playerId?: StringFilter<"MatchPlayer"> | string
+    isHome?: BoolFilter<"MatchPlayer"> | boolean
     position?: StringNullableFilter<"MatchPlayer"> | string | null
-    performance?: IntNullableFilter<"MatchPlayer"> | number | null
-    notes?: StringNullableFilter<"MatchPlayer"> | string | null
     match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
     player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
   }
@@ -7454,9 +7209,8 @@ export namespace Prisma {
     id?: SortOrder
     matchId?: SortOrder
     playerId?: SortOrder
+    isHome?: SortOrder
     position?: SortOrderInput | SortOrder
-    performance?: SortOrderInput | SortOrder
-    notes?: SortOrderInput | SortOrder
     match?: MatchOrderByWithRelationInput
     player?: PlayerOrderByWithRelationInput
   }
@@ -7469,9 +7223,8 @@ export namespace Prisma {
     NOT?: MatchPlayerWhereInput | MatchPlayerWhereInput[]
     matchId?: StringFilter<"MatchPlayer"> | string
     playerId?: StringFilter<"MatchPlayer"> | string
+    isHome?: BoolFilter<"MatchPlayer"> | boolean
     position?: StringNullableFilter<"MatchPlayer"> | string | null
-    performance?: IntNullableFilter<"MatchPlayer"> | number | null
-    notes?: StringNullableFilter<"MatchPlayer"> | string | null
     match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
     player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
   }, "id" | "matchId_playerId">
@@ -7480,14 +7233,11 @@ export namespace Prisma {
     id?: SortOrder
     matchId?: SortOrder
     playerId?: SortOrder
+    isHome?: SortOrder
     position?: SortOrderInput | SortOrder
-    performance?: SortOrderInput | SortOrder
-    notes?: SortOrderInput | SortOrder
     _count?: MatchPlayerCountOrderByAggregateInput
-    _avg?: MatchPlayerAvgOrderByAggregateInput
     _max?: MatchPlayerMaxOrderByAggregateInput
     _min?: MatchPlayerMinOrderByAggregateInput
-    _sum?: MatchPlayerSumOrderByAggregateInput
   }
 
   export type MatchPlayerScalarWhereWithAggregatesInput = {
@@ -7497,18 +7247,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"MatchPlayer"> | string
     matchId?: StringWithAggregatesFilter<"MatchPlayer"> | string
     playerId?: StringWithAggregatesFilter<"MatchPlayer"> | string
+    isHome?: BoolWithAggregatesFilter<"MatchPlayer"> | boolean
     position?: StringNullableWithAggregatesFilter<"MatchPlayer"> | string | null
-    performance?: IntNullableWithAggregatesFilter<"MatchPlayer"> | number | null
-    notes?: StringNullableWithAggregatesFilter<"MatchPlayer"> | string | null
   }
 
   export type PlayerCreateInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7519,10 +7264,6 @@ export namespace Prisma {
   export type PlayerUncheckedCreateInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7533,10 +7274,6 @@ export namespace Prisma {
   export type PlayerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7547,10 +7284,6 @@ export namespace Prisma {
   export type PlayerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7561,10 +7294,6 @@ export namespace Prisma {
   export type PlayerCreateManyInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7573,10 +7302,6 @@ export namespace Prisma {
   export type PlayerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7585,10 +7310,6 @@ export namespace Prisma {
   export type PlayerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7598,46 +7319,47 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    isManaged?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: TeamMemberCreateNestedManyWithoutTeamInput
-    matches?: MatchCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUncheckedCreateInput = {
     id?: string
     name: string
     description?: string | null
+    isManaged?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
-    matches?: MatchUncheckedCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: TeamMemberUpdateManyWithoutTeamNestedInput
-    matches?: MatchUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
-    matches?: MatchUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamCreateManyInput = {
     id?: string
     name: string
     description?: string | null
+    isManaged?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7646,6 +7368,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7654,6 +7377,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7661,7 +7385,6 @@ export namespace Prisma {
   export type TeamMemberCreateInput = {
     id?: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
     player: PlayerCreateNestedOneWithoutTeamMembershipsInput
     team: TeamCreateNestedOneWithoutMembersInput
   }
@@ -7671,13 +7394,11 @@ export namespace Prisma {
     playerId: string
     teamId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
   }
 
   export type TeamMemberUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
     player?: PlayerUpdateOneRequiredWithoutTeamMembershipsNestedInput
     team?: TeamUpdateOneRequiredWithoutMembersNestedInput
   }
@@ -7687,7 +7408,6 @@ export namespace Prisma {
     playerId?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type TeamMemberCreateManyInput = {
@@ -7695,13 +7415,11 @@ export namespace Prisma {
     playerId: string
     teamId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
   }
 
   export type TeamMemberUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type TeamMemberUncheckedUpdateManyInput = {
@@ -7709,20 +7427,17 @@ export namespace Prisma {
     playerId?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type MatchCreateInput = {
     id?: string
     date: Date | string
     location: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
+    homeScore?: number | null
+    awayScore?: number | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    team: TeamCreateNestedOneWithoutMatchesInput
     players?: MatchPlayerCreateNestedManyWithoutMatchInput
   }
 
@@ -7730,10 +7445,8 @@ export namespace Prisma {
     id?: string
     date: Date | string
     location: string
-    teamId: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
+    homeScore?: number | null
+    awayScore?: number | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7744,13 +7457,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    team?: TeamUpdateOneRequiredWithoutMatchesNestedInput
     players?: MatchPlayerUpdateManyWithoutMatchNestedInput
   }
 
@@ -7758,10 +7469,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7772,10 +7481,8 @@ export namespace Prisma {
     id?: string
     date: Date | string
     location: string
-    teamId: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
+    homeScore?: number | null
+    awayScore?: number | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7785,9 +7492,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7797,10 +7503,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7808,9 +7512,8 @@ export namespace Prisma {
 
   export type MatchPlayerCreateInput = {
     id?: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
     match: MatchCreateNestedOneWithoutPlayersInput
     player: PlayerCreateNestedOneWithoutMatchParticipationsInput
   }
@@ -7819,16 +7522,14 @@ export namespace Prisma {
     id?: string
     matchId: string
     playerId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type MatchPlayerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
     match?: MatchUpdateOneRequiredWithoutPlayersNestedInput
     player?: PlayerUpdateOneRequiredWithoutMatchParticipationsNestedInput
   }
@@ -7837,34 +7538,30 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     matchId?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MatchPlayerCreateManyInput = {
     id?: string
     matchId: string
     playerId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type MatchPlayerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MatchPlayerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     matchId?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7880,39 +7577,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type EnumSkillLevelFilter<$PrismaModel = never> = {
-    equals?: $Enums.SkillLevel | EnumSkillLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumSkillLevelFilter<$PrismaModel> | $Enums.SkillLevel
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -7943,11 +7607,6 @@ export namespace Prisma {
     none?: MatchPlayerWhereInput
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type TeamMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -7959,10 +7618,6 @@ export namespace Prisma {
   export type PlayerCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    dateOfBirth?: SortOrder
-    skillLevel?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7971,10 +7626,6 @@ export namespace Prisma {
   export type PlayerMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    dateOfBirth?: SortOrder
-    skillLevel?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7983,10 +7634,6 @@ export namespace Prisma {
   export type PlayerMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    dateOfBirth?: SortOrder
-    skillLevel?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8008,48 +7655,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type EnumSkillLevelWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SkillLevel | EnumSkillLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumSkillLevelWithAggregatesFilter<$PrismaModel> | $Enums.SkillLevel
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSkillLevelFilter<$PrismaModel>
-    _max?: NestedEnumSkillLevelFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -8074,20 +7679,31 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type MatchListRelationFilter = {
-    every?: MatchWhereInput
-    some?: MatchWhereInput
-    none?: MatchWhereInput
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type MatchOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type TeamCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isManaged?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8096,6 +7712,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isManaged?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8104,15 +7721,27 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isManaged?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type EnumTeamRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.TeamRole | EnumTeamRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumTeamRoleFilter<$PrismaModel> | $Enums.TeamRole
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type PlayerScalarRelationFilter = {
@@ -8135,7 +7764,6 @@ export namespace Prisma {
     playerId?: SortOrder
     teamId?: SortOrder
     joinedAt?: SortOrder
-    role?: SortOrder
   }
 
   export type TeamMemberMaxOrderByAggregateInput = {
@@ -8143,7 +7771,6 @@ export namespace Prisma {
     playerId?: SortOrder
     teamId?: SortOrder
     joinedAt?: SortOrder
-    role?: SortOrder
   }
 
   export type TeamMemberMinOrderByAggregateInput = {
@@ -8151,56 +7778,6 @@ export namespace Prisma {
     playerId?: SortOrder
     teamId?: SortOrder
     joinedAt?: SortOrder
-    role?: SortOrder
-  }
-
-  export type EnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TeamRole | EnumTeamRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumTeamRoleWithAggregatesFilter<$PrismaModel> | $Enums.TeamRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTeamRoleFilter<$PrismaModel>
-    _max?: NestedEnumTeamRoleFilter<$PrismaModel>
-  }
-
-  export type MatchCountOrderByAggregateInput = {
-    id?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
-    teamId?: SortOrder
-    opponentName?: SortOrder
-    isHome?: SortOrder
-    score?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type MatchMaxOrderByAggregateInput = {
-    id?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
-    teamId?: SortOrder
-    opponentName?: SortOrder
-    isHome?: SortOrder
-    score?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type MatchMinOrderByAggregateInput = {
-    id?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
-    teamId?: SortOrder
-    opponentName?: SortOrder
-    isHome?: SortOrder
-    score?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -8214,49 +7791,47 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type MatchScalarRelationFilter = {
-    is?: MatchWhereInput
-    isNot?: MatchWhereInput
-  }
-
-  export type MatchPlayerMatchIdPlayerIdCompoundUniqueInput = {
-    matchId: string
-    playerId: string
-  }
-
-  export type MatchPlayerCountOrderByAggregateInput = {
+  export type MatchCountOrderByAggregateInput = {
     id?: SortOrder
-    matchId?: SortOrder
-    playerId?: SortOrder
-    position?: SortOrder
-    performance?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    homeScore?: SortOrder
+    awayScore?: SortOrder
     notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type MatchPlayerAvgOrderByAggregateInput = {
-    performance?: SortOrder
+  export type MatchAvgOrderByAggregateInput = {
+    homeScore?: SortOrder
+    awayScore?: SortOrder
   }
 
-  export type MatchPlayerMaxOrderByAggregateInput = {
+  export type MatchMaxOrderByAggregateInput = {
     id?: SortOrder
-    matchId?: SortOrder
-    playerId?: SortOrder
-    position?: SortOrder
-    performance?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    homeScore?: SortOrder
+    awayScore?: SortOrder
     notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type MatchPlayerMinOrderByAggregateInput = {
+  export type MatchMinOrderByAggregateInput = {
     id?: SortOrder
-    matchId?: SortOrder
-    playerId?: SortOrder
-    position?: SortOrder
-    performance?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    homeScore?: SortOrder
+    awayScore?: SortOrder
     notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type MatchPlayerSumOrderByAggregateInput = {
-    performance?: SortOrder
+  export type MatchSumOrderByAggregateInput = {
+    homeScore?: SortOrder
+    awayScore?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8273,6 +7848,40 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type MatchScalarRelationFilter = {
+    is?: MatchWhereInput
+    isNot?: MatchWhereInput
+  }
+
+  export type MatchPlayerMatchIdPlayerIdCompoundUniqueInput = {
+    matchId: string
+    playerId: string
+  }
+
+  export type MatchPlayerCountOrderByAggregateInput = {
+    id?: SortOrder
+    matchId?: SortOrder
+    playerId?: SortOrder
+    isHome?: SortOrder
+    position?: SortOrder
+  }
+
+  export type MatchPlayerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    matchId?: SortOrder
+    playerId?: SortOrder
+    isHome?: SortOrder
+    position?: SortOrder
+  }
+
+  export type MatchPlayerMinOrderByAggregateInput = {
+    id?: SortOrder
+    matchId?: SortOrder
+    playerId?: SortOrder
+    isHome?: SortOrder
+    position?: SortOrder
   }
 
   export type TeamMemberCreateNestedManyWithoutPlayerInput = {
@@ -8305,18 +7914,6 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type EnumSkillLevelFieldUpdateOperationsInput = {
-    set?: $Enums.SkillLevel
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -8390,13 +7987,6 @@ export namespace Prisma {
     connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
   }
 
-  export type MatchCreateNestedManyWithoutTeamInput = {
-    create?: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput> | MatchCreateWithoutTeamInput[] | MatchUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: MatchCreateOrConnectWithoutTeamInput | MatchCreateOrConnectWithoutTeamInput[]
-    createMany?: MatchCreateManyTeamInputEnvelope
-    connect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-  }
-
   export type TeamMemberUncheckedCreateNestedManyWithoutTeamInput = {
     create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
     connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
@@ -8404,11 +7994,8 @@ export namespace Prisma {
     connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
   }
 
-  export type MatchUncheckedCreateNestedManyWithoutTeamInput = {
-    create?: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput> | MatchCreateWithoutTeamInput[] | MatchUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: MatchCreateOrConnectWithoutTeamInput | MatchCreateOrConnectWithoutTeamInput[]
-    createMany?: MatchCreateManyTeamInputEnvelope
-    connect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type TeamMemberUpdateManyWithoutTeamNestedInput = {
@@ -8425,20 +8012,6 @@ export namespace Prisma {
     deleteMany?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
   }
 
-  export type MatchUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput> | MatchCreateWithoutTeamInput[] | MatchUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: MatchCreateOrConnectWithoutTeamInput | MatchCreateOrConnectWithoutTeamInput[]
-    upsert?: MatchUpsertWithWhereUniqueWithoutTeamInput | MatchUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: MatchCreateManyTeamInputEnvelope
-    set?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    disconnect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    delete?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    connect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    update?: MatchUpdateWithWhereUniqueWithoutTeamInput | MatchUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: MatchUpdateManyWithWhereWithoutTeamInput | MatchUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: MatchScalarWhereInput | MatchScalarWhereInput[]
-  }
-
   export type TeamMemberUncheckedUpdateManyWithoutTeamNestedInput = {
     create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
     connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
@@ -8453,20 +8026,6 @@ export namespace Prisma {
     deleteMany?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
   }
 
-  export type MatchUncheckedUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput> | MatchCreateWithoutTeamInput[] | MatchUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: MatchCreateOrConnectWithoutTeamInput | MatchCreateOrConnectWithoutTeamInput[]
-    upsert?: MatchUpsertWithWhereUniqueWithoutTeamInput | MatchUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: MatchCreateManyTeamInputEnvelope
-    set?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    disconnect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    delete?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    connect?: MatchWhereUniqueInput | MatchWhereUniqueInput[]
-    update?: MatchUpdateWithWhereUniqueWithoutTeamInput | MatchUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: MatchUpdateManyWithWhereWithoutTeamInput | MatchUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: MatchScalarWhereInput | MatchScalarWhereInput[]
-  }
-
   export type PlayerCreateNestedOneWithoutTeamMembershipsInput = {
     create?: XOR<PlayerCreateWithoutTeamMembershipsInput, PlayerUncheckedCreateWithoutTeamMembershipsInput>
     connectOrCreate?: PlayerCreateOrConnectWithoutTeamMembershipsInput
@@ -8477,10 +8036,6 @@ export namespace Prisma {
     create?: XOR<TeamCreateWithoutMembersInput, TeamUncheckedCreateWithoutMembersInput>
     connectOrCreate?: TeamCreateOrConnectWithoutMembersInput
     connect?: TeamWhereUniqueInput
-  }
-
-  export type EnumTeamRoleFieldUpdateOperationsInput = {
-    set?: $Enums.TeamRole
   }
 
   export type PlayerUpdateOneRequiredWithoutTeamMembershipsNestedInput = {
@@ -8499,12 +8054,6 @@ export namespace Prisma {
     update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutMembersInput, TeamUpdateWithoutMembersInput>, TeamUncheckedUpdateWithoutMembersInput>
   }
 
-  export type TeamCreateNestedOneWithoutMatchesInput = {
-    create?: XOR<TeamCreateWithoutMatchesInput, TeamUncheckedCreateWithoutMatchesInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutMatchesInput
-    connect?: TeamWhereUniqueInput
-  }
-
   export type MatchPlayerCreateNestedManyWithoutMatchInput = {
     create?: XOR<MatchPlayerCreateWithoutMatchInput, MatchPlayerUncheckedCreateWithoutMatchInput> | MatchPlayerCreateWithoutMatchInput[] | MatchPlayerUncheckedCreateWithoutMatchInput[]
     connectOrCreate?: MatchPlayerCreateOrConnectWithoutMatchInput | MatchPlayerCreateOrConnectWithoutMatchInput[]
@@ -8519,12 +8068,12 @@ export namespace Prisma {
     connect?: MatchPlayerWhereUniqueInput | MatchPlayerWhereUniqueInput[]
   }
 
-  export type TeamUpdateOneRequiredWithoutMatchesNestedInput = {
-    create?: XOR<TeamCreateWithoutMatchesInput, TeamUncheckedCreateWithoutMatchesInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutMatchesInput
-    upsert?: TeamUpsertWithoutMatchesInput
-    connect?: TeamWhereUniqueInput
-    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutMatchesInput, TeamUpdateWithoutMatchesInput>, TeamUncheckedUpdateWithoutMatchesInput>
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type MatchPlayerUpdateManyWithoutMatchNestedInput = {
@@ -8567,14 +8116,6 @@ export namespace Prisma {
     connect?: PlayerWhereUniqueInput
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type MatchUpdateOneRequiredWithoutPlayersNestedInput = {
     create?: XOR<MatchCreateWithoutPlayersInput, MatchUncheckedCreateWithoutPlayersInput>
     connectOrCreate?: MatchCreateOrConnectWithoutPlayersInput
@@ -8603,38 +8144,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedEnumSkillLevelFilter<$PrismaModel = never> = {
-    equals?: $Enums.SkillLevel | EnumSkillLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumSkillLevelFilter<$PrismaModel> | $Enums.SkillLevel
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -8681,6 +8190,42 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8707,69 +8252,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedEnumSkillLevelWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SkillLevel | EnumSkillLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumSkillLevelWithAggregatesFilter<$PrismaModel> | $Enums.SkillLevel
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSkillLevelFilter<$PrismaModel>
-    _max?: NestedEnumSkillLevelFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedEnumTeamRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.TeamRole | EnumTeamRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumTeamRoleFilter<$PrismaModel> | $Enums.TeamRole
-  }
-
-  export type NestedEnumTeamRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TeamRole | EnumTeamRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TeamRole[] | ListEnumTeamRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumTeamRoleWithAggregatesFilter<$PrismaModel> | $Enums.TeamRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTeamRoleFilter<$PrismaModel>
-    _max?: NestedEnumTeamRoleFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8802,7 +8284,6 @@ export namespace Prisma {
   export type TeamMemberCreateWithoutPlayerInput = {
     id?: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
     team: TeamCreateNestedOneWithoutMembersInput
   }
 
@@ -8810,7 +8291,6 @@ export namespace Prisma {
     id?: string
     teamId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
   }
 
   export type TeamMemberCreateOrConnectWithoutPlayerInput = {
@@ -8825,18 +8305,16 @@ export namespace Prisma {
 
   export type MatchPlayerCreateWithoutPlayerInput = {
     id?: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
     match: MatchCreateNestedOneWithoutPlayersInput
   }
 
   export type MatchPlayerUncheckedCreateWithoutPlayerInput = {
     id?: string
     matchId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type MatchPlayerCreateOrConnectWithoutPlayerInput = {
@@ -8873,7 +8351,6 @@ export namespace Prisma {
     playerId?: StringFilter<"TeamMember"> | string
     teamId?: StringFilter<"TeamMember"> | string
     joinedAt?: DateTimeFilter<"TeamMember"> | Date | string
-    role?: EnumTeamRoleFilter<"TeamMember"> | $Enums.TeamRole
   }
 
   export type MatchPlayerUpsertWithWhereUniqueWithoutPlayerInput = {
@@ -8899,15 +8376,13 @@ export namespace Prisma {
     id?: StringFilter<"MatchPlayer"> | string
     matchId?: StringFilter<"MatchPlayer"> | string
     playerId?: StringFilter<"MatchPlayer"> | string
+    isHome?: BoolFilter<"MatchPlayer"> | boolean
     position?: StringNullableFilter<"MatchPlayer"> | string | null
-    performance?: IntNullableFilter<"MatchPlayer"> | number | null
-    notes?: StringNullableFilter<"MatchPlayer"> | string | null
   }
 
   export type TeamMemberCreateWithoutTeamInput = {
     id?: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
     player: PlayerCreateNestedOneWithoutTeamMembershipsInput
   }
 
@@ -8915,7 +8390,6 @@ export namespace Prisma {
     id?: string
     playerId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
   }
 
   export type TeamMemberCreateOrConnectWithoutTeamInput = {
@@ -8925,42 +8399,6 @@ export namespace Prisma {
 
   export type TeamMemberCreateManyTeamInputEnvelope = {
     data: TeamMemberCreateManyTeamInput | TeamMemberCreateManyTeamInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type MatchCreateWithoutTeamInput = {
-    id?: string
-    date: Date | string
-    location: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    players?: MatchPlayerCreateNestedManyWithoutMatchInput
-  }
-
-  export type MatchUncheckedCreateWithoutTeamInput = {
-    id?: string
-    date: Date | string
-    location: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    players?: MatchPlayerUncheckedCreateNestedManyWithoutMatchInput
-  }
-
-  export type MatchCreateOrConnectWithoutTeamInput = {
-    where: MatchWhereUniqueInput
-    create: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput>
-  }
-
-  export type MatchCreateManyTeamInputEnvelope = {
-    data: MatchCreateManyTeamInput | MatchCreateManyTeamInput[]
     skipDuplicates?: boolean
   }
 
@@ -8980,45 +8418,9 @@ export namespace Prisma {
     data: XOR<TeamMemberUpdateManyMutationInput, TeamMemberUncheckedUpdateManyWithoutTeamInput>
   }
 
-  export type MatchUpsertWithWhereUniqueWithoutTeamInput = {
-    where: MatchWhereUniqueInput
-    update: XOR<MatchUpdateWithoutTeamInput, MatchUncheckedUpdateWithoutTeamInput>
-    create: XOR<MatchCreateWithoutTeamInput, MatchUncheckedCreateWithoutTeamInput>
-  }
-
-  export type MatchUpdateWithWhereUniqueWithoutTeamInput = {
-    where: MatchWhereUniqueInput
-    data: XOR<MatchUpdateWithoutTeamInput, MatchUncheckedUpdateWithoutTeamInput>
-  }
-
-  export type MatchUpdateManyWithWhereWithoutTeamInput = {
-    where: MatchScalarWhereInput
-    data: XOR<MatchUpdateManyMutationInput, MatchUncheckedUpdateManyWithoutTeamInput>
-  }
-
-  export type MatchScalarWhereInput = {
-    AND?: MatchScalarWhereInput | MatchScalarWhereInput[]
-    OR?: MatchScalarWhereInput[]
-    NOT?: MatchScalarWhereInput | MatchScalarWhereInput[]
-    id?: StringFilter<"Match"> | string
-    date?: DateTimeFilter<"Match"> | Date | string
-    location?: StringFilter<"Match"> | string
-    teamId?: StringFilter<"Match"> | string
-    opponentName?: StringFilter<"Match"> | string
-    isHome?: BoolFilter<"Match"> | boolean
-    score?: StringNullableFilter<"Match"> | string | null
-    notes?: StringNullableFilter<"Match"> | string | null
-    createdAt?: DateTimeFilter<"Match"> | Date | string
-    updatedAt?: DateTimeFilter<"Match"> | Date | string
-  }
-
   export type PlayerCreateWithoutTeamMembershipsInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9028,10 +8430,6 @@ export namespace Prisma {
   export type PlayerUncheckedCreateWithoutTeamMembershipsInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9047,18 +8445,18 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    isManaged?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    matches?: MatchCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUncheckedCreateWithoutMembersInput = {
     id?: string
     name: string
     description?: string | null
+    isManaged?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    matches?: MatchUncheckedCreateNestedManyWithoutTeamInput
   }
 
   export type TeamCreateOrConnectWithoutMembersInput = {
@@ -9080,10 +8478,6 @@ export namespace Prisma {
   export type PlayerUpdateWithoutTeamMembershipsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9093,10 +8487,6 @@ export namespace Prisma {
   export type PlayerUncheckedUpdateWithoutTeamMembershipsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9118,57 +8508,32 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    matches?: MatchUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateWithoutMembersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    isManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    matches?: MatchUncheckedUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamCreateWithoutMatchesInput = {
-    id?: string
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    members?: TeamMemberCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamUncheckedCreateWithoutMatchesInput = {
-    id?: string
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    members?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamCreateOrConnectWithoutMatchesInput = {
-    where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutMatchesInput, TeamUncheckedCreateWithoutMatchesInput>
   }
 
   export type MatchPlayerCreateWithoutMatchInput = {
     id?: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
     player: PlayerCreateNestedOneWithoutMatchParticipationsInput
   }
 
   export type MatchPlayerUncheckedCreateWithoutMatchInput = {
     id?: string
     playerId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type MatchPlayerCreateOrConnectWithoutMatchInput = {
@@ -9179,35 +8544,6 @@ export namespace Prisma {
   export type MatchPlayerCreateManyMatchInputEnvelope = {
     data: MatchPlayerCreateManyMatchInput | MatchPlayerCreateManyMatchInput[]
     skipDuplicates?: boolean
-  }
-
-  export type TeamUpsertWithoutMatchesInput = {
-    update: XOR<TeamUpdateWithoutMatchesInput, TeamUncheckedUpdateWithoutMatchesInput>
-    create: XOR<TeamCreateWithoutMatchesInput, TeamUncheckedCreateWithoutMatchesInput>
-    where?: TeamWhereInput
-  }
-
-  export type TeamUpdateToOneWithWhereWithoutMatchesInput = {
-    where?: TeamWhereInput
-    data: XOR<TeamUpdateWithoutMatchesInput, TeamUncheckedUpdateWithoutMatchesInput>
-  }
-
-  export type TeamUpdateWithoutMatchesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: TeamMemberUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamUncheckedUpdateWithoutMatchesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type MatchPlayerUpsertWithWhereUniqueWithoutMatchInput = {
@@ -9230,23 +8566,19 @@ export namespace Prisma {
     id?: string
     date: Date | string
     location: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
+    homeScore?: number | null
+    awayScore?: number | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    team: TeamCreateNestedOneWithoutMatchesInput
   }
 
   export type MatchUncheckedCreateWithoutPlayersInput = {
     id?: string
     date: Date | string
     location: string
-    teamId: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
+    homeScore?: number | null
+    awayScore?: number | null
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9260,10 +8592,6 @@ export namespace Prisma {
   export type PlayerCreateWithoutMatchParticipationsInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9273,10 +8601,6 @@ export namespace Prisma {
   export type PlayerUncheckedCreateWithoutMatchParticipationsInput = {
     id?: string
     name: string
-    email: string
-    phone?: string | null
-    dateOfBirth?: Date | string | null
-    skillLevel?: $Enums.SkillLevel
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9303,23 +8627,19 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    team?: TeamUpdateOneRequiredWithoutMatchesNestedInput
   }
 
   export type MatchUncheckedUpdateWithoutPlayersInput = {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
+    homeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    awayScore?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9339,10 +8659,6 @@ export namespace Prisma {
   export type PlayerUpdateWithoutMatchParticipationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9352,10 +8668,6 @@ export namespace Prisma {
   export type PlayerUncheckedUpdateWithoutMatchParticipationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    skillLevel?: EnumSkillLevelFieldUpdateOperationsInput | $Enums.SkillLevel
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9366,21 +8678,18 @@ export namespace Prisma {
     id?: string
     teamId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
   }
 
   export type MatchPlayerCreateManyPlayerInput = {
     id?: string
     matchId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type TeamMemberUpdateWithoutPlayerInput = {
     id?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
     team?: TeamUpdateOneRequiredWithoutMembersNestedInput
   }
 
@@ -9388,63 +8697,44 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutPlayerInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type MatchPlayerUpdateWithoutPlayerInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
     match?: MatchUpdateOneRequiredWithoutPlayersNestedInput
   }
 
   export type MatchPlayerUncheckedUpdateWithoutPlayerInput = {
     id?: StringFieldUpdateOperationsInput | string
     matchId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MatchPlayerUncheckedUpdateManyWithoutPlayerInput = {
     id?: StringFieldUpdateOperationsInput | string
     matchId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberCreateManyTeamInput = {
     id?: string
     playerId: string
     joinedAt?: Date | string
-    role?: $Enums.TeamRole
-  }
-
-  export type MatchCreateManyTeamInput = {
-    id?: string
-    date: Date | string
-    location: string
-    opponentName: string
-    isHome: boolean
-    score?: string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type TeamMemberUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
     player?: PlayerUpdateOneRequiredWithoutTeamMembershipsNestedInput
   }
 
@@ -9452,84 +8742,40 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumTeamRoleFieldUpdateOperationsInput | $Enums.TeamRole
-  }
-
-  export type MatchUpdateWithoutTeamInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    players?: MatchPlayerUpdateManyWithoutMatchNestedInput
-  }
-
-  export type MatchUncheckedUpdateWithoutTeamInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    players?: MatchPlayerUncheckedUpdateManyWithoutMatchNestedInput
-  }
-
-  export type MatchUncheckedUpdateManyWithoutTeamInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
-    opponentName?: StringFieldUpdateOperationsInput | string
-    isHome?: BoolFieldUpdateOperationsInput | boolean
-    score?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MatchPlayerCreateManyMatchInput = {
     id?: string
     playerId: string
+    isHome: boolean
     position?: string | null
-    performance?: number | null
-    notes?: string | null
   }
 
   export type MatchPlayerUpdateWithoutMatchInput = {
     id?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
     player?: PlayerUpdateOneRequiredWithoutMatchParticipationsNestedInput
   }
 
   export type MatchPlayerUncheckedUpdateWithoutMatchInput = {
     id?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MatchPlayerUncheckedUpdateManyWithoutMatchInput = {
     id?: StringFieldUpdateOperationsInput | string
     playerId?: StringFieldUpdateOperationsInput | string
+    isHome?: BoolFieldUpdateOperationsInput | boolean
     position?: NullableStringFieldUpdateOperationsInput | string | null
-    performance?: NullableIntFieldUpdateOperationsInput | number | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
