@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
       data: {
         name: body.name,
         isActive: body.isActive !== undefined ? body.isActive : true,
-        isMember: body.isMember !== undefined ? body.isMember : true,
       },
     });
     

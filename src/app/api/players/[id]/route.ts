@@ -72,7 +72,6 @@ export async function PUT(
       data: {
         name: body.name,
         isActive: body.isActive !== undefined ? body.isActive : player.isActive,
-        isMember: body.isMember !== undefined ? body.isMember : player.isMember,
       },
     });
 

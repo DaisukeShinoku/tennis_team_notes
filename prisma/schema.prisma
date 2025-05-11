@@ -18,7 +18,6 @@ model Player {
   id            String          @id @default(uuid())
   name          String
   isActive      Boolean         @default(true)
-  isMember      Boolean         @default(true)  // true: 自チームの人間, false: 外部の人間
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   teamMemberships TeamMember[]

@@ -8,8 +8,7 @@ export default function NewPlayerPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
-    isActive: true,
-    isMember: true
+    isActive: true
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -97,20 +96,6 @@ export default function NewPlayerPage() {
             />
             <label htmlFor="isActive" className="ml-2 block text-sm text-gray-700">
               活動中
-            </label>
-          </div>
-
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="isMember"
-              name="isMember"
-              checked={formData.isMember}
-              onChange={handleChange}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-            />
-            <label htmlFor="isMember" className="ml-2 block text-sm text-gray-700">
-              自チームのメンバー
             </label>
           </div>
         </div>

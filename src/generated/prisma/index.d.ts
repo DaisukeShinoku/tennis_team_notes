@@ -1348,7 +1348,6 @@ export namespace Prisma {
     id: string | null
     name: string | null
     isActive: boolean | null
-    isMember: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1357,7 +1356,6 @@ export namespace Prisma {
     id: string | null
     name: string | null
     isActive: boolean | null
-    isMember: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1366,7 +1364,6 @@ export namespace Prisma {
     id: number
     name: number
     isActive: number
-    isMember: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1377,7 +1374,6 @@ export namespace Prisma {
     id?: true
     name?: true
     isActive?: true
-    isMember?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1386,7 +1382,6 @@ export namespace Prisma {
     id?: true
     name?: true
     isActive?: true
-    isMember?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1395,7 +1390,6 @@ export namespace Prisma {
     id?: true
     name?: true
     isActive?: true
-    isMember?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1477,7 +1471,6 @@ export namespace Prisma {
     id: string
     name: string
     isActive: boolean
-    isMember: boolean
     createdAt: Date
     updatedAt: Date
     _count: PlayerCountAggregateOutputType | null
@@ -1503,7 +1496,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     teamMemberships?: boolean | Player$teamMembershipsArgs<ExtArgs>
@@ -1515,7 +1507,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["player"]>
@@ -1524,7 +1515,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["player"]>
@@ -1533,12 +1523,11 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isActive" | "isMember" | "createdAt" | "updatedAt", ExtArgs["result"]["player"]>
+  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["player"]>
   export type PlayerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teamMemberships?: boolean | Player$teamMembershipsArgs<ExtArgs>
     matchParticipations?: boolean | Player$matchParticipationsArgs<ExtArgs>
@@ -1557,7 +1546,6 @@ export namespace Prisma {
       id: string
       name: string
       isActive: boolean
-      isMember: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["player"]>
@@ -1988,7 +1976,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Player", 'String'>
     readonly name: FieldRef<"Player", 'String'>
     readonly isActive: FieldRef<"Player", 'Boolean'>
-    readonly isMember: FieldRef<"Player", 'Boolean'>
     readonly createdAt: FieldRef<"Player", 'DateTime'>
     readonly updatedAt: FieldRef<"Player", 'DateTime'>
   }
@@ -6812,7 +6799,6 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     isActive: 'isActive',
-    isMember: 'isMember',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -6969,7 +6955,6 @@ export namespace Prisma {
     id?: StringFilter<"Player"> | string
     name?: StringFilter<"Player"> | string
     isActive?: BoolFilter<"Player"> | boolean
-    isMember?: BoolFilter<"Player"> | boolean
     createdAt?: DateTimeFilter<"Player"> | Date | string
     updatedAt?: DateTimeFilter<"Player"> | Date | string
     teamMemberships?: TeamMemberListRelationFilter
@@ -6980,7 +6965,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     teamMemberships?: TeamMemberOrderByRelationAggregateInput
@@ -6994,7 +6978,6 @@ export namespace Prisma {
     NOT?: PlayerWhereInput | PlayerWhereInput[]
     name?: StringFilter<"Player"> | string
     isActive?: BoolFilter<"Player"> | boolean
-    isMember?: BoolFilter<"Player"> | boolean
     createdAt?: DateTimeFilter<"Player"> | Date | string
     updatedAt?: DateTimeFilter<"Player"> | Date | string
     teamMemberships?: TeamMemberListRelationFilter
@@ -7005,7 +6988,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PlayerCountOrderByAggregateInput
@@ -7020,7 +7002,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Player"> | string
     name?: StringWithAggregatesFilter<"Player"> | string
     isActive?: BoolWithAggregatesFilter<"Player"> | boolean
-    isMember?: BoolWithAggregatesFilter<"Player"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Player"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Player"> | Date | string
   }
@@ -7274,7 +7255,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMemberships?: TeamMemberCreateNestedManyWithoutPlayerInput
@@ -7285,7 +7265,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMemberships?: TeamMemberUncheckedCreateNestedManyWithoutPlayerInput
@@ -7296,7 +7275,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMemberships?: TeamMemberUpdateManyWithoutPlayerNestedInput
@@ -7307,7 +7285,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMemberships?: TeamMemberUncheckedUpdateManyWithoutPlayerNestedInput
@@ -7318,7 +7295,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7327,7 +7303,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7336,7 +7311,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7645,7 +7619,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7654,7 +7627,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7663,7 +7635,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8451,7 +8422,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     matchParticipations?: MatchPlayerCreateNestedManyWithoutPlayerInput
@@ -8461,7 +8431,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     matchParticipations?: MatchPlayerUncheckedCreateNestedManyWithoutPlayerInput
@@ -8510,7 +8479,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchParticipations?: MatchPlayerUpdateManyWithoutPlayerNestedInput
@@ -8520,7 +8488,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchParticipations?: MatchPlayerUncheckedUpdateManyWithoutPlayerNestedInput
@@ -8626,7 +8593,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMemberships?: TeamMemberCreateNestedManyWithoutPlayerInput
@@ -8636,7 +8602,6 @@ export namespace Prisma {
     id?: string
     name: string
     isActive?: boolean
-    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMemberships?: TeamMemberUncheckedCreateNestedManyWithoutPlayerInput
@@ -8695,7 +8660,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMemberships?: TeamMemberUpdateManyWithoutPlayerNestedInput
@@ -8705,7 +8669,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMemberships?: TeamMemberUncheckedUpdateManyWithoutPlayerNestedInput
